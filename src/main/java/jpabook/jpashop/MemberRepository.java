@@ -1,7 +1,6 @@
 package jpabook.jpashop;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import jpabook.jpashop.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,7 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class MemberRepository {
 
-    @PersistenceContext
+    @PersistenceContext //TODO 의미
     private EntityManager em;
 
     public Long save(Member member) {

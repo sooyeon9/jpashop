@@ -15,10 +15,10 @@ public class MemberRepository {
 
     public Long save(Member member) {
         em.persist(member); // 영속성 컨텍스트에 member을 넣어줌 commit되는 시점에 쿼리 날아가서 디비에 반영
-        return member.getId();
+        return member.getId(); // persist 호출 이후 member 객체에는 active한 pk값이 반영되어있다
     }
 
-    public Member find(Long id) {
+    public Member findOne(Long id) {
         return em.find(Member.class, id); // pk를 넣어준다
     }
 

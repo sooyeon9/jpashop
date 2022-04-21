@@ -21,6 +21,17 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    /**
+     * 영속성 컨텍스트가 자동 변경
+     */
+    @Transactional
+    public void updateItem(Long id, String name, int price, int stockQuantity) {
+        Item item = itemRepository.findOne(id);
+        item.setName(name); // item 엔티티 내부에서 change() 라는 함수로 덮어주는게 유지보수 시 더 나음 (추적 가능)
+        item.setPrice(price);
+        item.setStockQuantity(stockQuantity);
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }

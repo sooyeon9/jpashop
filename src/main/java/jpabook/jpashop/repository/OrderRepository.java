@@ -106,4 +106,12 @@ public class OrderRepository {
 
         return query.getResultList();
     }
+
+    public List<Order> findAllWithMemberDelivery() { // Lazy 로딩 무시하고, 진짜 객체를 모두 가져와서 채운다
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +  // fetch join 실무에서 성능 최적화를 위해 자주 사용
+                                " join fetch o.delivery d", Order.class)
+                .getResultList();
+    }
 }

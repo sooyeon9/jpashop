@@ -122,6 +122,8 @@ public class OrderRepository {
                                 " join fetch o.delivery d" +
                                 " join fetch o.orderItems oi" +
                                 " join fetch oi.item i", Order.class)
+//                .setFirstResult(1)    // WARN 9496 --- [nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+//                .setMaxResults(100)   // 쿼리에 limit, offset은 걸리지 않고 메모리에서 페이징하겠다고 경고함 -> out of memory 가능성 높아짐
                 .getResultList();
     }
 
